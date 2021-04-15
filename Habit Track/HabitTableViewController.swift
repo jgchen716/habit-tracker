@@ -17,8 +17,42 @@ class HabitTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
-
+    
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return habits.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath)
+        
+        let habit = habits[indexPath.row]
+        
+        if let name = cell.viewWithTag(1) as? UILabel {
+            name.text = habit.name
+        }
+        
+        if let desc = cell.viewWithTag(2) as? UILabel {
+            desc.text = habit.description
+        }
+        
+        if let emoji = cell.viewWithTag(3) as? UILabel {
+            emoji.text = habit.emoji
+        }
+        
+        return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.performSegue(withIdentifier: "HabitToDetail", sender: habits[indexPath.row])
+    }
 
 }
