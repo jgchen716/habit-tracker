@@ -9,6 +9,8 @@ import UIKit
 
 class HabitTableViewController: UITableViewController {
 
+    var habits: [Habit] = []
+    
     @IBAction func addHabit(_ sender: Any) {
         performSegue(withIdentifier: "HabitToAdd", sender: Any?.self)
     }
