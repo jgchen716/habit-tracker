@@ -9,12 +9,15 @@ import UIKit
 
 class StartViewController: UIViewController {
     
+    @IBOutlet var mainImage: UIImageView!
+    
     @IBAction func goToHabit(_ sender: Any) {
         performSegue(withIdentifier: "StartToHabit", sender: Any?.self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        mainImage.image = UIImage(named: "rocket")
     }
 
 

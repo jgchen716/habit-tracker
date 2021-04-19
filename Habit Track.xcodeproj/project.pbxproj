@@ -16,6 +16,7 @@
 		EE08B0D52625421400B86BFD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08B0D42625421400B86BFD /* DetailViewController.swift */; };
 		EE08B0D82625424E00B86BFD /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08B0D72625424E00B86BFD /* StartViewController.swift */; };
 		EE08B0DB2625427A00B86BFD /* AddHabitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE08B0DA2625427A00B86BFD /* AddHabitViewController.swift */; };
+		EE21114B2627D0E9003161B8 /* Habit.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE21114A2627D0E9003161B8 /* Habit.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		EE08B0D42625421400B86BFD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		EE08B0D72625424E00B86BFD /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
 		EE08B0DA2625427A00B86BFD /* AddHabitViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddHabitViewController.swift; sourceTree = "<group>"; };
+		EE21114A2627D0E9003161B8 /* Habit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Habit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				EE08B0BB262537F200B86BFD /* AppDelegate.swift */,
 				EE08B0BD262537F200B86BFD /* SceneDelegate.swift */,
 				EE08B0C1262537F200B86BFD /* Main.storyboard */,
+				EE21114A2627D0E9003161B8 /* Habit.swift */,
 				EE08B0C4262537F300B86BFD /* Assets.xcassets */,
 				EE08B0C6262537F300B86BFD /* LaunchScreen.storyboard */,
 				EE08B0C9262537F300B86BFD /* Info.plist */,
@@ -149,6 +152,7 @@
 				EE08B0D82625424E00B86BFD /* StartViewController.swift in Sources */,
 				EE08B0DB2625427A00B86BFD /* AddHabitViewController.swift in Sources */,
 				EE08B0D2262541DC00B86BFD /* HabitTableViewController.swift in Sources */,
+				EE21114B2627D0E9003161B8 /* Habit.swift in Sources */,
 				EE08B0BC262537F200B86BFD /* AppDelegate.swift in Sources */,
 				EE08B0BE262537F200B86BFD /* SceneDelegate.swift in Sources */,
 				EE08B0D52625421400B86BFD /* DetailViewController.swift in Sources */,

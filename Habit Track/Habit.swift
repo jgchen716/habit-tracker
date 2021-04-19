@@ -13,17 +13,17 @@ struct Habit {
     let description: String
     
     // number of days habit has been tracked
-    let numDays: Int
+    var numDays: Int
     
     // number of CONTINUOUS days habit has been tracked
-    let streak: Int
+    var streak: Int
     
-    init(name: String, startDate: String, emoji: String, description: String, numDays: Int, streak: Int) {
+    init(name: String, startDate: String, emoji: String, description: String) {
         self.name = name
         self.startDate = startDate
         self.emoji = emoji
         self.description = description
-        self.numDays = numDays
-        self.streak = streak
+        self.numDays = 0
+        self.streak = 0
     }
 }
