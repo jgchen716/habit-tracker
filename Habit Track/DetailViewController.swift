@@ -61,10 +61,16 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let oldDateString = getDateString(date: oldDate)
             
             // increase streak if last tracked date was yesterday
-            if oldDateString == dates[0] {
-                habit!.streak = habit!.streak + 1
+            if dates.count == 0 {
+                let newVal = habit!.streak + 1
+                habit!.streak = newVal
+                streak.text = "\(newVal) Day Streak!"
+            } else if oldDateString == dates[0] {
+                let newVal = habit!.streak + 1
+                habit!.streak = newVal
+                streak.text = "\(newVal) Day Streak!"
                 
-                if habit!.streak >= 10 {
+                if newVal >= 10 {
                     streak.backgroundColor = UIColor.green
                 }
             }
