@@ -7,8 +7,10 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
+    @IBOutlet weak var tableView: UITableView!
+    
     @IBOutlet weak var emoji: UILabel!
     @IBOutlet weak var habitName: UILabel!
     @IBOutlet weak var habitDesc: UILabel!
@@ -20,7 +22,8 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -46,8 +49,6 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         let val = Int(sender.value)
         
         if val >= 0 {
-            numDays.text = "Total Days: \(val)"
-            
             let current = Date()
             let currentDateString = getDateString(date: current)
             
@@ -60,23 +61,35 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
             let oldDate = Calendar.current.date(byAdding: dateComponents, to: current)!
             let oldDateString = getDateString(date: oldDate)
             
-            // increase streak if last tracked date was yesterday
             if dates.count == 0 {
-                let newVal = habit!.streak + 1
-                habit!.streak = newVal
-                streak.text = "\(newVal) Day Streak!"
-            } else if oldDateString == dates[0] {
-                let newVal = habit!.streak + 1
-                habit!.streak = newVal
-                streak.text = "\(newVal) Day Streak!"
+                numDays.text = "Total Days: \(val)"
                 
-                if newVal >= 10 {
-                    streak.backgroundColor = UIColor.green
+                let newVal = habit!.streak + 1
+                habit!.streak = newVal
+                streak.text = "\(newVal) Day Streak!"
+                // add new date to days tracked
+                dates.insert(currentDateString, at: 0)
+            } else {
+                       
+                // increase total days if current day is not the same as last day tracked
+                if currentDateString != dates[0] {
+                    numDays.text = "Total Days: \(val)"
+                    // add new date to days tracked
+                    dates.insert(currentDateString, at: 0)
                 }
-            }
-            
-            // add new date to days tracked
-            dates.insert(currentDateString, at: 0)
+                
+                // increase streak if last tracked date was yesterday
+                if oldDateString == dates[0] {
+                    let newVal = habit!.streak + 1
+                    habit!.streak = newVal
+                    streak.text = "\(newVal) Day Streak!"
+                    
+                    if newVal >= 10 {
+                        streak.backgroundColor = UIColor.green
+                    }
+                }
+            }      
+            self.tableView.reloadData()
         }
         
     }
@@ -101,4 +114,11 @@ class DetailViewController: UIViewController, UITableViewDataSource, UITableView
         
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                dates.remove(at: indexPath.row)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
 }
