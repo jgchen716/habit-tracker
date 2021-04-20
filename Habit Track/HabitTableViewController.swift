@@ -7,10 +7,48 @@
 
 import UIKit
 
-class HabitTableViewController: UITableViewController, AddHabitDelegate {
+class HabitTableViewController: UITableViewController, AddHabitDelegate, UISearchBarDelegate {
+    
+    @IBOutlet weak var searchBar: UISearchBar!
     
     var habits: [Habit] = []
     
+    // filtered search results
+    var filtered: [Habit] = []
+    var isSearching = false
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        searchBar.delegate = self
+    }
+    
+    // search bar methods
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        let text = searchBar.text!.lowercased()
+        let currentResults = habits.filter { h in
+            return h.name.lowercased().contains(text) || h.description.lowercased().contains(text) ||
+                h.emoji.lowercased().contains(text) || h.startDate.lowercased().contains(text)
+        }
+        filtered = currentResults
+        self.isSearching = true
+        self.tableView.reloadData()
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchText == "" {
+            self.isSearching = false
+            self.tableView.reloadData()
+        }
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        if searchBar.text == "" {
+            self.isSearching = false
+            self.tableView.reloadData()
+        }
+    }
+    
+    // adding habit, sorting list of habits
     func didCreate(_ habit: Habit) {
         dismiss(animated: true, completion: nil)
         habits.append(habit)
@@ -26,22 +64,19 @@ class HabitTableViewController: UITableViewController, AddHabitDelegate {
         performSegue(withIdentifier: "HabitToAdd", sender: Any?.self)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
+    // table view methods
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return habits.count
+        return isSearching ? filtered.count : habits.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = self.tableView.dequeueReusableCell(withIdentifier: "HabitCell", for: indexPath)
         
-        let habit = habits[indexPath.row]
+        let habit = isSearching ? filtered[indexPath.row] : habits[indexPath.row]
         
         if let name = cell.viewWithTag(1) as? UILabel {
             name.text = habit.name

@@ -287,7 +287,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for a Habit" id="vBM-WO-5GG">
+                        <searchBar key="tableHeaderView" contentMode="redraw" placeholder="Search for a habit" id="vBM-WO-5GG">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                             <textInputTraits key="textInputTraits"/>
@@ -338,6 +338,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="searchBar" destination="vBM-WO-5GG" id="NEd-Qs-hVS"/>
                         <segue destination="7LV-Fc-d3a" kind="show" identifier="HabitToDetail" id="c8G-ei-Xi2"/>
                         <segue destination="YNz-Vs-rP0" kind="presentation" identifier="HabitToAdd" id="cMc-NE-01y"/>
                     </connections>
